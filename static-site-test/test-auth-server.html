@@ -21,9 +21,9 @@
 
     <main id="container">
       <h1>OAuth2 Test</h1>
-        <h4><b>Step 1:</b> Get the Auth URL</h4>
+        <h4><b>Step 1:</b> Get the OAuth URL</h4>
         <p>Click the button below to get your auth url.</p>
-        <button id="getCode">Get OAuth URL</button>
+        <button id="getURL">Get OAuth URL</button>
         <p id="result"></p>
         <a id="authURL" href target="_blank">Click to authorise</a>
 
@@ -53,13 +53,13 @@
 
 
     <script type="text/javascript">
-      const getCodeElement = document.getElementById("getCode");
+      const getURLElement = document.getElementById("getURL");
       const resultElement = document.getElementById("result");
       const resultLink = document.getElementById("authURL");
       // Replace this with your own endpoint
       const getAuthURL = "https://nnis9onmui.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url";
 
-      getCodeElement.onclick = function () {
+      getURLElement.onclick = function () {
         fetch(getAuthURL)
           .then(function (response) {
             return response.json();
@@ -102,7 +102,7 @@
       // -- STEP 3
       const getEvents = document.getElementById("getEvents");
       const events = document.getElementById("events");
-      const getCalendarEvents = "https://nnis9onmui.execute-api.eu-central-1.amazonaws.com/dev/api/get-events";
+      const getCalendarEvents = "https://cors-anywhere.herokuapp.com/https://nnis9onmui.execute-api.eu-central-1.amazonaws.com/dev/api/get-events";
 
       getEvents.onclick = function () {
         const { access_token } = JSON.parse(accessTokenElement.innerText);
