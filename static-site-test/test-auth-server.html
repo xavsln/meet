@@ -102,7 +102,8 @@
       // -- STEP 3
       const getEvents = document.getElementById("getEvents");
       const events = document.getElementById("events");
-      const getCalendarEvents = "https://cors-anywhere.herokuapp.com/https://nnis9onmui.execute-api.eu-central-1.amazonaws.com/dev/api/get-events";
+ 
+      const getCalendarEvents = "https://nnis9onmui.execute-api.eu-central-1.amazonaws.com/dev/api/get-events";
 
       getEvents.onclick = function () {
         const { access_token } = JSON.parse(accessTokenElement.innerText);
