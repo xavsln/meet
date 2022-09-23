@@ -6,7 +6,7 @@ class Event extends Component {
   };
 
   toggleEventDetails = () => {
-    this.setState({ showDetails: !this.state.show });
+    this.setState({ showDetails: !this.state.showDetails });
   };
 
   render() {

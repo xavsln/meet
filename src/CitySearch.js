@@ -4,10 +4,11 @@ class CitySearch extends Component {
   state = {
     query: "",
     suggestions: [],
+    showSuggestions: undefined,
   };
 
   handleInputChanged = (event) => {
-    const value = event.target.value;
+    const value = event.target.value; // target method will return the element that triggered the event while value will return the value of the Element that triggered the event
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
@@ -17,7 +18,10 @@ class CitySearch extends Component {
   handleItemClicked = (suggestion) => {
     this.setState({
       query: suggestion,
+      showSuggestions: false,
     });
+    // Use the function passed via the props from App.js
+    this.props.updateEvents(suggestion);
   };
 
   render() {
@@ -28,8 +32,14 @@ class CitySearch extends Component {
           className='city'
           value={this.state.query}
           onChange={this.handleInputChanged}
+          onFocus={() => {
+            this.setState({ showSuggestions: true });
+          }}
         />
-        <ul className='suggestions'>
+        <ul
+          className='suggestions'
+          style={this.state.showSuggestions ? {} : { display: "none" }}
+        >
           {this.state.suggestions.map((suggestion) => (
             <li
               key={suggestion}
@@ -38,7 +48,7 @@ class CitySearch extends Component {
               {suggestion}
             </li>
           ))}
-          <li key='all'>
+          <li onClick={() => this.handleItemClicked("all")}>
             <b>See all cities</b>
           </li>
         </ul>
