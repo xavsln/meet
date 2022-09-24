@@ -90,23 +90,6 @@ const removeQuery = () => {
   }
 };
 
-// const getToken = async (code) => {
-//   const encodeCode = encodeURIComponent(code);
-//   const { access_token } = await fetch(
-//     "https://nnis9onmui.execute-api.eu-central-1.amazonaws.com/dev/api/token" +
-//       "/" +
-//       encodeCode
-//   )
-//     .then((res) => {
-//       return res.json();
-//     })
-//     .catch((error) => error);
-
-//   access_token && localStorage.setItem("access_token", access_token);
-
-//   return access_token;
-// };
-
 const getToken = async (code) => {
   try {
     const encodeCode = encodeURIComponent(code);

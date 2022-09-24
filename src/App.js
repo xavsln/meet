@@ -16,16 +16,20 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
+    numberOfEvents: 32,
   };
 
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => {
     getEvents().then((events) => {
       const locationEvents =
         location === "all"
           ? events
           : events.filter((event) => event.location === location);
       this.setState({
-        events: locationEvents,
+        events: locationEvents.slice(
+          0,
+          eventCount ? eventCount : this.state.numberOfEvents
+        ),
       });
     });
   };
@@ -53,7 +57,7 @@ class App extends Component {
           updateEvents={this.updateEvents}
         />
 
-        <NumberOfEvents />
+        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} />
 
         {/* App.js passes a state (ie. a variable) events as a props to EventList component */}
         <EventList events={this.state.events} />
