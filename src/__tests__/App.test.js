@@ -9,7 +9,10 @@ import { mockData } from "../mock-data";
 
 import { extractLocations, getEvents } from "../api";
 
-// Scope related to unit tests
+// ===========================
+// Scope related to UNIT TESTS
+// ===========================
+
 describe("<App /> component", () => {
   let AppWrapper;
 
@@ -30,7 +33,10 @@ describe("<App /> component", () => {
   });
 });
 
+// ==================================
 // Scope related to INTEGRATION TESTS
+// ==================================
+
 describe("<App /> integration", () => {
   test('App passes "events" state as a prop to EventList', () => {
     // Render the full App using mount and set it in AppWrapper constant
@@ -80,6 +86,32 @@ describe("<App /> integration", () => {
     await suggestionItems.at(suggestionItems.length - 1).simulate("click");
     const allEvents = await getEvents();
     expect(AppWrapper.state("events")).toEqual(allEvents);
+    AppWrapper.unmount();
+  });
+
+  test('App passes "numberOfEvents" state as a prop to NumberOfEvents', () => {
+    // Render the full App using mount and set it in AppWrapper constant
+    const AppWrapper = mount(<App />);
+    const AppNumberOfEventsState = AppWrapper.state("numberOfEvents");
+
+    // Check the **numberOfEvents** state is not undefined
+    expect(AppNumberOfEventsState).not.toEqual(undefined);
+
+    // Check the **numberOfEvents** state is passed properly as props to NumberOfEvents
+    expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(
+      AppNumberOfEventsState
+    );
+
+    // Tests that use the same DOM will affect each other, so it is needed to “clean up” the DOM after each test using a unmount() function
+    AppWrapper.unmount();
+  });
+
+  // Set up a test that will check that App.js get a list of events with a numberOfevents equal the the defined numberOfEvents (ie. 32)
+  test("get list of all events that will be the defined numberOfEvents, ie. 32", async () => {
+    const AppWrapper = mount(<App />);
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+
+    expect(AppWrapper.state("numberOfEvents")).toEqual(32);
     AppWrapper.unmount();
   });
 });

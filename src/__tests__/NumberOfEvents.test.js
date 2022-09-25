@@ -25,7 +25,11 @@ describe("<NumberOfEvents /> component", () => {
   // GIVEN the user is on the main page, WHEN user selects a city THEN the loaded list of events shall not exceed the default value
   test("Load a list of events by default", () => {
     // Check the default number of events to be shown to the user is 32
-    expect(NumberOfEventsWrapper.state("query")).toBe(32);
+
+    // expect(NumberOfEventsWrapper.state("query")).toBe(32);
+    expect(
+      NumberOfEventsWrapper.find(".numberOfEventsInput").prop("value")
+    ).toBe(32);
   });
 
   // State is changed when text input changes
