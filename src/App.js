@@ -20,9 +20,10 @@ class App extends Component {
   };
 
   updateEvents = (location, eventCount) => {
+    console.log("eventCount: ", eventCount);
     if (eventCount === undefined) {
       eventCount = this.state.numberOfEvents;
-    }
+    } else this.setState({ numberOfEvents: eventCount });
 
     getEvents().then((events) => {
       const locationEvents =
@@ -67,6 +68,7 @@ class App extends Component {
 
         {/* App.js passes a state (ie. a variable) events as a props to EventList component */}
         <EventList events={this.state.events} />
+        {console.log(this.state)}
       </div>
     );
   }
