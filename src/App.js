@@ -16,6 +16,7 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
+    locationSelected: "all",
     numberOfEvents: 32,
   };
 
@@ -24,6 +25,9 @@ class App extends Component {
     if (eventCount === undefined) {
       eventCount = this.state.numberOfEvents;
     } else this.setState({ numberOfEvents: eventCount });
+    if (location === undefined) {
+      location = this.state.locationSelected;
+    }
 
     getEvents().then((events) => {
       const locationEvents =
@@ -68,7 +72,7 @@ class App extends Component {
 
         {/* App.js passes a state (ie. a variable) events as a props to EventList component */}
         <EventList events={this.state.events} />
-        {/* {console.log(this.state)} */}
+        {console.log(this.state)}
       </div>
     );
   }
