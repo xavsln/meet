@@ -13,7 +13,9 @@ class Event extends Component {
     const { event } = this.props;
     return (
       <div className='event'>
-        <p className='startingDateTime'>{event.start.dateTime}</p>
+        <p className='startingDateTime'>
+          {new Date(event.start.dateTime).toLocaleString()}
+        </p>
         <h3 className='eventTitle'>{event.summary}</h3>
         <h5 className='groupName'></h5>
         <p className='confirmedAttendees'>
