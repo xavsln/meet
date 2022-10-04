@@ -6,6 +6,7 @@ import NumberOfEvents from "./NumberOfEvents";
 import { mockData } from "./mock-data";
 import { extractLocations, getEvents } from "./api";
 import { render } from "enzyme";
+import { OffLineAlert } from "./Alert";
 
 import "./nprogress.css";
 
@@ -49,6 +50,17 @@ class App extends Component {
         this.setState({ events, locations: extractLocations(events) });
       }
     });
+
+    if (!navigator.onLine) {
+      this.setState({
+        offLineMessage:
+          "You are offline. List of events may not be up to date.",
+      });
+    } else {
+      this.setState({
+        offLineMessage: "",
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -60,6 +72,9 @@ class App extends Component {
       <div className='App'>
         {/* App.js passes a state (ie. a variable) locations as a props to CitySearch component */}
         {/* App.js passes a method updateEvents as a props to CitySearch component so it can be used in CitySearch */}
+        <div className='offLineAlert'>
+          <OffLineAlert text={this.state.offLineMessage} />
+        </div>
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents}
