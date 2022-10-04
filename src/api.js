@@ -52,9 +52,20 @@ const checkToken = async (accessToken) => {
 export const getEvents = async () => {
   NProgress.start();
 
+  console.log("From the getEvents function");
+
   if (window.location.href.startsWith("http://localhost")) {
+    console.log(
+      "Case where we are using the App locally, from the getEvents function"
+    );
     NProgress.done();
     return mockData;
+  }
+
+  if (navigator.onLine) {
+    console.log("Navigator is online");
+  } else {
+    console.log("Navigator is offline");
   }
 
   //  If user is offline, the stored event list is loaded, parsed, and returned as events
