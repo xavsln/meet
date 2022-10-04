@@ -57,6 +57,13 @@ export const getEvents = async () => {
     return mockData;
   }
 
+  //  If user is offline, the stored event list is loaded, parsed, and returned as events
+  if (!navigator.onLine) {
+    const data = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return data ? JSON.parse(events).events : [];
+  }
+
   const token = await getAccessToken();
 
   if (token) {
