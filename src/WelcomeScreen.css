@@ -1,6 +1,6 @@
 .WelcomeScreen {
   position: fixed;
-  width: 100%;
+  width: 90%;
   height: 100%;
   top: 0;
   background: white;
@@ -46,7 +46,7 @@
   width: 18px;
   height: 18px;
 }
-.btn-text {
+.google-btn-text {
   float: right;
   color: #fff;
   font-size: 14px;
