@@ -9,7 +9,7 @@ import { render } from "enzyme";
 import { OffLineAlert } from "./Alert";
 
 import WelcomeScreen from "./WelcomeScreen";
-import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
+import { checkToken, getAccessToken } from "./api";
 
 import "./nprogress.css";
 
