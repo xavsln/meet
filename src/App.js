@@ -13,6 +13,17 @@ import { checkToken, getAccessToken } from "./api";
 
 import "./nprogress.css";
 
+import {
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+
 class App extends Component {
   // let locations = extractLocations(mockData);
 
@@ -45,6 +56,18 @@ class App extends Component {
         numberOfEvents: eventCount,
       });
     });
+  };
+
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter(
+        (event) => event.location === location
+      ).length;
+      const city = location.split(", ").shift();
+      return { city, number };
+    });
+    return data;
   };
 
   async componentDidMount() {
@@ -97,6 +120,10 @@ class App extends Component {
         <div className='offLineAlert'>
           <OffLineAlert text={this.state.offLineMessage} />
         </div>
+
+        <h1>Meet App</h1>
+        <h4>Choose your nearest city</h4>
+
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents}
@@ -106,6 +133,27 @@ class App extends Component {
           numberOfEvents={this.state.numberOfEvents}
           updateEvents={this.updateEvents}
         />
+
+        <h4>Events in each city</h4>
+        <ResponsiveContainer height={400}>
+          <ScatterChart
+            // width={800}
+            // height={400}
+            margin={{
+              top: 20,
+              right: 20,
+              bottom: 20,
+              left: 20,
+            }}
+          >
+            <CartesianGrid />
+            <XAxis type='category' dataKey='city' name='city' />
+            <YAxis type='number' dataKey='number' name='number of events' />
+            <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+            <Legend verticalAlign='top' height={36} />
+            <Scatter data={this.getData()} fill='#8884d8' />
+          </ScatterChart>
+        </ResponsiveContainer>
 
         {/* App.js passes a state (ie. a variable) events as a props to EventList component */}
         <EventList events={this.state.events} />
