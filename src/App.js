@@ -23,6 +23,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import { PieChart, Pie, Sector, Cell } from "recharts";
+
 class App extends Component {
   // let locations = extractLocations(mockData);
 
@@ -134,6 +136,8 @@ class App extends Component {
         />
 
         <h4>Events in each city</h4>
+        <EventGenre events={events} />
+
         <ResponsiveContainer height={400}>
           <ScatterChart
             // width={800}
