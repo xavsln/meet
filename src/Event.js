@@ -26,7 +26,11 @@ class Event extends Component {
           <div className='eventDetails'>
             <p className='eventDescription'>{event.description}</p>
             <p className='eventLocation'>{event.location}</p>
-            <p className='eventHtmlLink'>{event.htmlLink}</p>
+            <p className='eventHtmlLink'>
+              <a href={event.htmlLink} target='_blank'>
+                Link to the event
+              </a>
+            </p>
           </div>
         )}
 
