@@ -1,3 +1,7 @@
+<img src="public/app-screenshot.png" width="100%" />
+
+---
+
 # 1. Project description
 
 The meet App is a serverless, progressive web application (PWA) with React using a
@@ -21,7 +25,7 @@ On the main page, a Chart displays the number of events by city. (maximum 32)
 - Add app shortcut to the home screen.
 - View a chart showing the number of upcoming events by date.
 
-# 3. How to get the project running
+# 3. Link to the online Project
 
 Check the following url: https://xavsln.github.io/meet/
 
